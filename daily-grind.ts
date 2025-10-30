@@ -1,18 +1,12 @@
-/**
- * @license
- * Copyright 2025 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */
-
-// This is the full content for your .ts file
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
+import { promises as fs } from 'node:fs';
 
 // 1. Initialize your MCP Server
 const server = new McpServer({
   name: 'daily-grind',
-  version: '1.0.0',
+  version: '0.0.1',
 });
 
 // 2. Register your "brew_suggestion" tool
@@ -62,6 +56,40 @@ server.registerTool(
         suggestion: suggestionText,
       },
     };
+  }
+);
+
+// Register the "read_local_grind" tool
+server.registerTool(
+  'read_local_grind',
+  {
+    title: 'Read Local Grind',
+    description: 'Reads the content of a local text or markdown file.',
+    inputSchema: {
+      filePath: z.string().describe('The path to the local file to read'),
+    },
+    outputSchema: {
+      fileContent: z.string(),
+    },
+  },
+  async ({ filePath }) => {
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      return {
+        content: [{ type: 'text', text: content }],
+        structuredContent: {
+          fileContent: content,
+        },
+      };
+    } catch (error) {
+      const errorMessage = `Error reading file ${filePath}: ${error instanceof Error ? error.message : String(error)}`;
+      return {
+        content: [{ type: 'text', text: errorMessage }],
+        structuredContent: {
+          fileContent: errorMessage,
+        },
+      };
+    }
   }
 );
 

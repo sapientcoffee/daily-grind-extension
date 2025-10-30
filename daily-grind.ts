@@ -42,6 +42,15 @@ server.registerTool(
       case 'stressed':
         suggestionText = 'How about a calming, decaf latte?';
         break;
+      case 'happy':
+        suggestionText = 'A sweet and bright caramel macchiato would be lovely.';
+        break;
+      case 'adventurous':
+        suggestionText = 'Why not try a spicy chai latte?';
+        break;
+      case 'zen':
+        suggestionText = 'Sometimes, a simple cup of green tea is all you need.';
+        break;
       default:
         suggestionText = 'A classic medium roast is always a good choice.';
     }

@@ -29,33 +29,19 @@ server.registerTool(
 
   // 3. This is the code that runs when the tool is called
   async ({ mood }) => {
-    let suggestionText = "";
+    let suggestionText: string;
+    const moodSuggestions: Record<string, string> = {
+      'tired': 'A bold espresso shot is in order!',
+      'curious': 'A complex, single-origin pour-over sounds perfect.',
+      'stressed': 'How about a calming, decaf latte?',
+      'happy': 'A sweet and bright caramel macchiato would be lovely.',
+      'adventurous': 'Why not try a spicy chai latte?',
+      'zen': 'Sometimes, a simple cup of green tea is all you need.',
+    };
 
-    // Your fun switch logic from the user story
-    switch (mood.toLowerCase()) {
-      case "tired":
-        suggestionText = "A bold espresso shot is in order!";
-        break;
-      case "curious":
-        suggestionText = "A complex, single-origin pour-over sounds perfect.";
-        break;
-      case "stressed":
-        suggestionText = "How about a calming, decaf latte?";
-        break;
-      case "happy":
-        suggestionText =
-          "A sweet and bright caramel macchiato would be lovely.";
-        break;
-      case "adventurous":
-        suggestionText = "Why not try a spicy chai latte?";
-        break;
-      case "zen":
-        suggestionText =
-          "Sometimes, a simple cup of green tea is all you need.";
-        break;
-      default:
-        suggestionText = "A classic medium roast is always a good choice.";
-    }
+    const defaultSuggestion = 'A classic medium roast is always a good choice.';
+
+    suggestionText = moodSuggestions[mood.toLowerCase()] ?? defaultSuggestion;
 
     // 4. Return the result in the format the MCP server expects
     return {

@@ -14,8 +14,8 @@ Follow these steps to get the `daily-grind` extension up and running on your loc
 
 ### Prerequisites
 
-*   [Node.js](https://nodejs.org/) (v18 or higher)
-*   [Gemini CLI](https://github.com/google/gemini-cli)
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [Gemini CLI](https://github.com/google/gemini-cli)
 
 ### Installation from GitHub
 
@@ -82,14 +82,14 @@ Gemini will ask for permission to run your new tool. Once you approve, it will e
 
 This extension is being developed in phases:
 
-*   **Phase 1: The "Local Cafe" (v0.1)**
-    *   **Goal:** Establish local functionality and a delightful user experience.
-    *   **Features:** A fun "coffee suggestion" tool and a basic tool to read and summarize local text files.
+- **Phase 1: The "Local Cafe" (v0.1)**
+  - **Goal:** Establish local functionality and a delightful user experience.
+  - **Features:** A fun "coffee suggestion" tool and a basic tool to read and summarize local text files.
 
-*   **Phase 2: The "Coffee Chain" (v1.0 - Core MVP)**
-    *   **Goal:** Deliver the core value by fetching and summarizing remote release notes from user-defined RSS/Atom feeds.
-    *   **Features:** A `fetch_daily_grind` tool and a `brew_me_a_summary` custom command.
+- **Phase 2: The "Coffee Chain" (v1.0 - Core MVP)**
+  - **Goal:** Deliver the core value by fetching and summarizing remote release notes from user-defined RSS/Atom feeds.
+  - **Features:** A `fetch_daily_grind` tool and a `brew_me_a_summary` custom command.
 
-*   **Phase 3: The "Specialty Roaster" (v2.0 - Team & Power-User)**
-    *   **Goal:** Scale the solution for teams with advanced, data-driven queries.
-    *   **Features:** Integration with BigQuery for querying release notes by product name and deployment of the MCP server to a remote service like Google Cloud Run.
+- **Phase 3: The "Specialty Roaster" (v2.0 - Team & Power-User)**
+  - **Goal:** Scale the solution for teams with advanced, data-driven queries.
+  - **Features:** Integration with BigQuery for querying release notes by product name and deployment of the MCP server to a remote service like Google Cloud Run.

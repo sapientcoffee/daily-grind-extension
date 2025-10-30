@@ -1,72 +1,69 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { z } from 'zod';
-import { promises as fs } from 'node:fs';
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { promises as fs } from "node:fs";
 
 // 1. Initialize your MCP Server
 const server = new McpServer({
-  name: 'daily-grind',
-  version: '0.0.1',
+  name: "daily-grind",
+  version: "0.0.1",
 });
 
 // 2. Register your "brew_suggestion" tool
 server.registerTool(
-  'brew_suggestion', // The name Gemini will use (e.g., @brew_suggestion)
+  "brew_suggestion", // The name Gemini will use (e.g., @brew_suggestion)
   {
-    title: 'Brew Suggestion',
+    title: "Brew Suggestion",
     description: "Suggests a coffee type based on the user's mood.",
-    
+
     // Define what the tool accepts as input
     inputSchema: {
       mood: z.string().describe("The user's current mood"),
     },
-    
+
     // Define what the tool will return as structured data
     outputSchema: {
       suggestion: z.string(),
     },
   },
-  
+
   // 3. This is the code that runs when the tool is called
   async ({ mood }) => {
-    let suggestionText = '';
+    let suggestionText: string;
+    const moodSuggestions: Record<string, string> = {
+      tired: "A bold espresso shot is in order!",
+      curious: "A complex, single-origin pour-over sounds perfect.",
+      stressed: "How about a calming, decaf latte?",
+      happy: "A sweet and bright caramel macchiato would be lovely.",
+      adventurous: "Why not try a spicy chai latte?",
+      zen: "Sometimes, a simple cup of green tea is all you need.",
+    };
 
-    // Your fun switch logic from the user story
-    switch (mood.toLowerCase()) {
-      case 'tired':
-        suggestionText = 'A bold espresso shot is in order!';
-        break;
-      case 'curious':
-        suggestionText = 'A complex, single-origin pour-over sounds perfect.';
-        break;
-      case 'stressed':
-        suggestionText = 'How about a calming, decaf latte?';
-        break;
-      default:
-        suggestionText = 'A classic medium roast is always a good choice.';
-    }
+    const defaultSuggestion = "A classic medium roast is always a good choice.";
+
+    suggestionText = moodSuggestions[mood.toLowerCase()] ?? defaultSuggestion;
 
     // 4. Return the result in the format the MCP server expects
     return {
       // 'content' is the simple text passed back to the LLM
-      content: [{ type: 'text', text: suggestionText }],
-      
+      content: [{ type: "text", text: suggestionText }],
+
       // 'structuredContent' must match your outputSchema
       structuredContent: {
         suggestion: suggestionText,
       },
     };
-  }
+  },
 );
 
 // Register the "read_local_grind" tool
 server.registerTool(
-  'read_local_grind',
+  "read_local_grind",
   {
-    title: 'Read Local Grind',
-    description: 'Reads the content of a local text or markdown file.',
+    title: "Read Local Grind",
+    description: "Reads the content of a local text or markdown file.",
     inputSchema: {
-      filePath: z.string().describe('The path to the local file to read'),
+      filePath: z.string().describe("The path to the local file to read"),
     },
     outputSchema: {
       fileContent: z.string(),
@@ -74,9 +71,9 @@ server.registerTool(
   },
   async ({ filePath }) => {
     try {
-      const content = await fs.readFile(filePath, 'utf-8');
+      const content = await fs.readFile(filePath, "utf-8");
       return {
-        content: [{ type: 'text', text: content }],
+        content: [{ type: "text", text: content }],
         structuredContent: {
           fileContent: content,
         },
@@ -84,13 +81,13 @@ server.registerTool(
     } catch (error) {
       const errorMessage = `Error reading file ${filePath}: ${error instanceof Error ? error.message : String(error)}`;
       return {
-        content: [{ type: 'text', text: errorMessage }],
+        content: [{ type: "text", text: errorMessage }],
         structuredContent: {
           fileContent: errorMessage,
         },
       };
     }
-  }
+  },
 );
 
 // 5. Start the server and listen for commands from Gemini CLI

@@ -31,15 +31,15 @@ server.registerTool(
   async ({ mood }) => {
     let suggestionText: string;
     const moodSuggestions: Record<string, string> = {
-      'tired': 'A bold espresso shot is in order!',
-      'curious': 'A complex, single-origin pour-over sounds perfect.',
-      'stressed': 'How about a calming, decaf latte?',
-      'happy': 'A sweet and bright caramel macchiato would be lovely.',
-      'adventurous': 'Why not try a spicy chai latte?',
-      'zen': 'Sometimes, a simple cup of green tea is all you need.',
+      tired: "A bold espresso shot is in order!",
+      curious: "A complex, single-origin pour-over sounds perfect.",
+      stressed: "How about a calming, decaf latte?",
+      happy: "A sweet and bright caramel macchiato would be lovely.",
+      adventurous: "Why not try a spicy chai latte?",
+      zen: "Sometimes, a simple cup of green tea is all you need.",
     };
 
-    const defaultSuggestion = 'A classic medium roast is always a good choice.';
+    const defaultSuggestion = "A classic medium roast is always a good choice.";
 
     suggestionText = moodSuggestions[mood.toLowerCase()] ?? defaultSuggestion;
 

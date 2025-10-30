@@ -93,3 +93,9 @@ This extension is being developed in phases:
 - **Phase 3: The "Specialty Roaster" (v2.0 - Team & Power-User)**
   - **Goal:** Scale the solution for teams with advanced, data-driven queries.
   - **Features:** Integration with BigQuery for querying release notes by product name and deployment of the MCP server to a remote service like Google Cloud Run.
+
+---
+
+## Documentation
+
+For a detailed overview of the product vision, roadmap, and technical specifications, please refer to our [Product Documentation](https://docs.google.com/document/d/1NoyTf3fJcOLf4mtb7-Y_FrWy4nTWlVsHo3W5ryTwWCQ/edit?tab=t.0#heading=h.c29qo317jze3).

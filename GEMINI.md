@@ -60,3 +60,5 @@ To maintain a clean, collaborative, and efficient development workflow, please a
 *   **Practice Trunk-Based Development:** Aim to integrate changes into the `main` branch frequently. Keep feature branches short-lived and merge them back into `main` as soon as they are complete and reviewed. This minimizes divergence and simplifies merging.
 *   **Descriptive Commit Messages:** Write clear, concise, and informative commit messages that explain *what* was changed and *why*. Follow a conventional commit style if applicable (e.g., `feat: add new feature`, `fix: resolve bug`).
 *   **Pull Request Reviews:** All changes should be submitted via Pull Requests (PRs) and reviewed by at least one other team member before merging into `main`. This ensures code quality and knowledge sharing.
+
+*   **Pre-Push Code Review:** This project includes a `pre-push` Git hook that serves as a reminder to review your changes before sharing them. When you attempt to `git push`, a message will appear prompting you to run the `/code-review` command in the Gemini CLI. This helps ensure that every push has been reviewed, improving code quality and catching potential issues early.

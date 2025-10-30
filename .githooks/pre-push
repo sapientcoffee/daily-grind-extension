@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# This pre-push hook serves as a reminder to run a code review before pushing.
+
+echo "------------------------------------------------------------------"
+echo "Reminder: Before pushing, please run a code review for your changes."
+echo "You can do this by running the following command in the Gemini CLI:"
+echo ""
+echo "/code-review"
+echo ""
+echo "------------------------------------------------------------------"
+
+# To enforce this check, you could uncomment the following lines,
+# which would require the user to confirm they've run the review.
+#
+# read -p "Have you run the code review? (y/n) " -n 1 -r
+# echo
+# if [[ ! $REPLY =~ ^[Yy]$ ]]
+# then
+#     echo "Push aborted. Please run /code-review before pushing."
+#     exit 1
+# fi
+
+exit 0

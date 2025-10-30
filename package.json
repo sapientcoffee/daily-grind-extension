@@ -1,11 +1,12 @@
 {
-  "name": "mcp-server-example",
+  "name": "daily-grind",
   "version": "0.0.1",
   "description": "Example MCP Server for Gemini CLI Extension",
   "type": "module",
   "main": "daily-grind.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "typescript": "~5.4.5",

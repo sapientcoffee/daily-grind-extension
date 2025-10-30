@@ -11,7 +11,7 @@ import { z } from 'zod';
 
 // 1. Initialize your MCP Server
 const server = new McpServer({
-  name: 'daily-grind-mcp-server',
+  name: 'daily-grind',
   version: '1.0.0',
 });
 

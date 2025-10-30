@@ -17,6 +17,16 @@ Follow these steps to get the `daily-grind` extension up and running on your loc
 *   [Node.js](https://nodejs.org/) (v18 or higher)
 *   [Gemini CLI](https://github.com/google/gemini-cli)
 
+### Installation from GitHub
+
+To install the `daily-grind` extension directly from its GitHub repository, run the following command:
+
+```bash
+gemini extensions install https://github.com/sapientcoffee/daily-grind-extension.git
+```
+
+This command will automatically handle cloning the repository, installing dependencies, and building the TypeScript code.
+
 ### Step 1: Install Dependencies
 
 First, navigate to the extension's directory and install the required npm packages.
@@ -56,7 +66,7 @@ You're all set! Just start the Gemini CLI.
 gemini
 ```
 
-When it loads, you should see a new line like `[mcp-server-example] ... started`, letting you know your extension's local server is running.
+When it loads, you should see a new line like `[daily-grind] ... started`, letting you know your extension's local server is running.
 
 Now, test your tool with a prompt. For example, to test the `brew_suggestion` tool from Phase 1:
 
